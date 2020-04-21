@@ -22,7 +22,7 @@ function varargout = StegoTool(varargin)
 
 % Edit the above text to modify the response to help StegoTool
 
-% Last Modified by GUIDE v2.5 21-Apr-2020 11:21:48
+% Last Modified by GUIDE v2.5 21-Apr-2020 12:46:55
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -55,6 +55,12 @@ function StegoTool_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for StegoTool
 handles.output = hObject;
 
+a=ones(300,512); % a-matrice de 300x512 cu valori de 1
+axes(handles.axes1); %selctare axe ce contin tag ul axes1
+imshow(a); %display matrice pe axele selectate
+axes(handles.axes2); 
+imshow(a);
+
 % Update handles structure
 guidata(hObject, handles);
 
@@ -78,6 +84,9 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+ %%%PlayAudio1%%%
+a = handles.a;
+audioread(a,44100);
 
 
 % --- Executes on button press in pushbutton2.
@@ -146,6 +155,23 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+                    %%%InputAudio%%%
+[filename, pathname] = uigetfile('.*wav', 'Pick an audio');%enables the user to select de audio file .wav format
+if isequal(filename,0) || isequal(pathname,0) %if filename=0 sau pathname=0
+    warndlg('Audio is not selected'); %warning daca inputadio nu este selectat
+else
+    a=audioread(filename); %else folosesc functia audioread pentru a citi continutului lui filename 
+    axes(handles.axes1);%selectez axes1 cu ajutorul functiei axes
+    plot(a); %plotez a
+    %disp(a);
+    %transfer filenmae si a in handles to use them in the callback of
+    %embedding button
+    handles.filename=filename;
+    handles.a=a;
+    guidata(hObject, handles);
+    helpdlg('Input audio is Selected');%display a help dialogbox
+end
+
 
 % --- Executes on button press in pushbutton4.
 function pushbutton4_Callback(hObject, eventdata, handles)
@@ -153,13 +179,79 @@ function pushbutton4_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+                    %%%Secret Data%%%
+[filename,pathname] = uigetfile('.txt','Pick any txt file'); %folosesc uigetfile pentru a selecta textul ce contine datesecrete
+if isequal(filenmae,0) || isequal(pathname,0)
+    warndlg('txt file is not selected'); %warning daca inputadio nu este selectat
+else
+    fid = fopen(filename, 'r'); %else deschide file in read mode
+    F = fread(fid); %read data in binary format
+    s = char(F'); %convert from binary to character array, iar in s stochez secret data
+    fclose(fid); %close textfile
+end
+%pass the content of F and s to handles
+handles.s = s;
+handles.F = F;
+guidata(hObject, handles);
+helpdlg('Text File is Selected'); %display a help dialogbox
+    
+
 
 % --- Executes on button press in pushbutton5.
 function pushbutton5_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton5 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+            
+                    %%%Embedding Button%%%
+a = handles.a; %input audio
+s = handles.s; %secret text
+F = handles.F; %binary format of the secret text
 
+Q_SIZE = 3;
+c = round(a*(10^Q_Size));
+i=1;
+ii = 51;
+while i<=length(s);
+    if c(ii,i)<0
+        sbit = -1;
+    else
+        sbit = 1;
+        iii = ii+2;
+    end
+    if c(iii,1)<0
+        sbit2 = -1;
+    else
+        sbit2 = 1;
+    end
+    c(ii,1) = abs(c(ii,1));
+    c(iii,1) = abs(c(iii,1));
+    [c(ii,1),c(iii,1)] = Enc_Char(c(ii,1),c(iio,1),F(i));
+    c(ii,1) = sbit1*c(ii,1);
+    c(iii,1) = sbit2*c(iii,1);
+    i = i+1;
+    ii = iii+2;
+end
+        n = length(F); %Input Text Length
+        d = c/(10^Q_SIZE);
+        axes(handles.axes2);
+        plot(d);
+        audiowrite(d,44100,16,'Embedded.WAV');%wavwirte
+        helpdlg('Embedded process completed');
+pass = passkey;
+s2 = char(pass);
+ss = length(s2);
+if ss == 4
+    helpdlg('Secret Key Succesfully Added');
+else
+    errordlg('Enter the Valid Secret Key');
+end
+num = dec2bin(s2,8);
+disp(num);
+handles.pass = num;
+handles.d = d;
+handles.n = n;
+guidatat(hObject, handles);
 
 % --- Executes on button press in pushbutton6.
 function pushbutton6_Callback(hObject, eventdata, handles)
@@ -167,6 +259,8 @@ function pushbutton6_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+                    %%%Extraction Button%%%
+                    
 
 % --- Executes on button press in pushbutton7.
 function pushbutton7_Callback(hObject, eventdata, handles)
