@@ -1,0 +1,351 @@
+function varargout = StegoTool(varargin)
+% STEGOTOOL MATLAB code for StegoTool.fig
+%      STEGOTOOL, by itself, creates a new STEGOTOOL or raises the existing
+%      singleton*.
+%
+%      H = STEGOTOOL returns the handle to a new STEGOTOOL or the handle to
+%      the existing singleton*.
+%
+%      STEGOTOOL('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in STEGOTOOL.M with the given input arguments.
+%
+%      STEGOTOOL('Property','Value',...) creates a new STEGOTOOL or raises the
+%      existing singleton*.  Starting from the left, property value pairs are
+%      applied to the GUI before StegoTool_OpeningFcn gets called.  An
+%      unrecognized property name or invalid value makes property application
+%      stop.  All inputs are passed to StegoTool_OpeningFcn via varargin.
+%
+%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
+%      instance to run (singleton)".
+%
+% See also: GUIDE, GUIDATA, GUIHANDLES
+
+% Edit the above text to modify the response to help StegoTool
+
+% Last Modified by GUIDE v2.5 21-Apr-2020 12:46:55
+
+% Begin initialization code - DO NOT EDIT
+gui_Singleton = 1;
+gui_State = struct('gui_Name',       mfilename, ...
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @StegoTool_OpeningFcn, ...
+                   'gui_OutputFcn',  @StegoTool_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+end
+
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+% End initialization code - DO NOT EDIT
+
+
+% --- Executes just before StegoTool is made visible.
+function StegoTool_OpeningFcn(hObject, eventdata, handles, varargin)
+% This function has no output args, see OutputFcn.
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% varargin   command line arguments to StegoTool (see VARARGIN)
+
+% Choose default command line output for StegoTool
+handles.output = hObject;
+
+a=ones(300,512); % a-matrice de 300x512 cu valori de 1
+axes(handles.axes1); %selctare axe ce contin tag ul axes1
+imshow(a); %display matrice pe axele selectate
+axes(handles.axes2); 
+imshow(a);
+
+% Update handles structure
+guidata(hObject, handles);
+
+% UIWAIT makes StegoTool wait for user response (see UIRESUME)
+% uiwait(handles.figure1);
+
+
+% --- Outputs from this function are returned to the command line.
+function varargout = StegoTool_OutputFcn(hObject, eventdata, handles) 
+% varargout  cell array for returning output args (see VARARGOUT);
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Get default command line output from handles structure
+varargout{1} = handles.output;
+
+
+% --- Executes on button press in pushbutton1.
+function pushbutton1_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+ %%%PlayAudio1%%%
+a = handles.a;
+audioread(a,44100);
+
+
+% --- Executes on button press in pushbutton2.
+function pushbutton2_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+d = handles.d;
+audioplayer(d,44100);
+
+
+% --- Executes on button press in pushbutton9.
+function pushbutton9_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton9 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+exit;
+
+
+
+function edit1_Callback(hObject, eventdata, handles)
+% hObject    handle to edit1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit1 as text
+%        str2double(get(hObject,'String')) returns contents of edit1 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit2_Callback(hObject, eventdata, handles)
+% hObject    handle to edit2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit2 as text
+%        str2double(get(hObject,'String')) returns contents of edit2 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in pushbutton3.
+function pushbutton3_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+                    %%%InputAudio%%%
+[filename, pathname] = uigetfile('.*wav', 'Pick an audio');%enables the user to select de audio file .wav format
+if isequal(filename,0) || isequal(pathname,0) %if filename=0 sau pathname=0
+    warndlg('Audio is not selected'); %warning daca inputadio nu este selectat
+else
+    a=audioread(filename); %else folosesc functia audioread pentru a citi continutului lui filename 
+    axes(handles.axes1);%selectez axes1 cu ajutorul functiei axes
+    plot(a); %plotez a
+    %disp(a);
+    %transfer filenmae si a in handles to use them in the callback of
+    %embedding button
+    handles.filename=filename;
+    handles.a=a;
+    guidata(hObject, handles);
+    helpdlg('Input audio is Selected');%display a help dialogbox
+end
+
+
+% --- Executes on button press in pushbutton4.
+function pushbutton4_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+                    %%%Secret Data%%%
+[filename,pathname] = uigetfile('.txt','Pick any txt file'); %folosesc uigetfile pentru a selecta textul ce contine datesecrete
+if isequal(filenmae,0) || isequal(pathname,0)
+    warndlg('txt file is not selected'); %warning daca inputadio nu este selectat
+else
+    fid = fopen(filename, 'r'); %else deschide file in read mode
+    F = fread(fid); %read data in binary format
+    s = char(F'); %convert from binary to character array, iar in s stochez secret data
+    fclose(fid); %close textfile
+end
+%pass the content of F and s to handles
+handles.s = s;
+handles.F = F;
+guidata(hObject, handles);
+helpdlg('Text File is Selected'); %display a help dialogbox
+    
+
+
+% --- Executes on button press in pushbutton5.
+function pushbutton5_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+            
+                    %%%Embedding Button%%%
+a = handles.a; %input audio
+s = handles.s; %secret text
+F = handles.F; %binary format of the secret text
+
+Q_SIZE = 3;
+c = round(a*(10^Q_Size));
+i=1;
+ii = 51;
+while i<=length(s);
+    if c(ii,i)<0
+        sbit = -1;
+    else
+        sbit = 1;
+        iii = ii+2;
+    end
+    if c(iii,1)<0
+        sbit2 = -1;
+    else
+        sbit2 = 1;
+    end
+    c(ii,1) = abs(c(ii,1));
+    c(iii,1) = abs(c(iii,1));
+    [c(ii,1),c(iii,1)] = Enc_Char(c(ii,1),c(iio,1),F(i));
+    c(ii,1) = sbit1*c(ii,1);
+    c(iii,1) = sbit2*c(iii,1);
+    i = i+1;
+    ii = iii+2;
+end
+        n = length(F); %Input Text Length
+        d = c/(10^Q_SIZE);
+        axes(handles.axes2);
+        plot(d);
+        audiowrite(d,44100,16,'Embedded.WAV');%wavwirte
+        helpdlg('Embedded process completed');
+pass = passkey;
+s2 = char(pass);
+ss = length(s2);
+if ss == 4
+    helpdlg('Secret Key Succesfully Added');
+else
+    errordlg('Enter the Valid Secret Key');
+end
+num = dec2bin(s2,8);
+disp(num);
+handles.pass = num;
+handles.d = d;
+handles.n = n;
+guidatat(hObject, handles);
+
+% --- Executes on button press in pushbutton6.
+function pushbutton6_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton6 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+                    %%%Extraction Button%%%
+
+n = handles.n;
+pass = handles.pass;
+pass1 = passkey;
+s2 = char(pass1);
+ss = length(s2);
+if ss == 4
+    helpgdlg('Secret Key Succesfully Added');
+else
+    errordlg('Enter the Valid Secret Key');
+end
+pass1 = dec2bin(s2,8);
+temp = 0;
+for i=1:4
+    for j=1:8
+        if pass(i,j) == pass1(i,j)
+            temp = temp+1;
+        else
+            temp=0;
+        end
+    end
+end
+
+if temp == 32
+%     s = 'A';
+%     s1 = serial('COMS','BaudRate',9600);
+%     fopen(s1);
+%     fprintf(s1,s);
+%     fclose(s1);
+else
+    s = 'B';
+%     s1 = serial('COMS','BaudRate',9600);
+%     fopen(s1);
+%     fprintf(s1,s);
+%     fclose(s1);
+      exit;
+end
+
+a = audioread('Embedded.wav');
+Q_SIZE = 3;
+c = round(a*(10^Q_SIZE));
+
+i = 1;
+TXT_LENGTH = n;
+ii = 51;
+while i<= TXT_LENGTH
+    c(ii,1) = abs(c(ii,1));
+    iii = ii+2;
+    c(iii,1) = abs(c(iii,1));
+    s(i) = Dec_Char(c(ii,1),c(iii,1));
+    i = i+1;
+    ii = iii+2;
+end
+
+fid = fopen('output.txt', 'wb');
+fwrite(fid,char(s'),'char');
+fclose(fid);
+helpdlg('Extraction Process Completed');  
+    
+    
+% --- Executes on button press in pushbutton7.
+function pushbutton7_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+                    %%%Validation Button%%%
+                    
+ inpaud = handles.a;
+ embaud = handles.d;
+ 
+ [Y,Z] = psnr(inpaud,embaud);
+ set(handles.edit1,'string',Y);
+ set(handles.edit2,'string',Z);
+ 
+
+
+% --- Executes on button press in pushbutton8.
+function pushbutton8_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+                    %%%View Output%%%
+                   
+open 'output.txt';
