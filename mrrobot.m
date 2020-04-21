@@ -19,7 +19,7 @@ function varargout = mrrobot(varargin)
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
-
+%am comentat aici
 % Edit the above text to modify the response to help mrrobot
 
 % Last Modified by GUIDE v2.5 16-Apr-2020 21:26:46
@@ -63,7 +63,7 @@ guidata(hObject, handles);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = mrrobot_OutputFcn(hObject, eventdata, handles) 
+function varargout = mrrobot_OutputFcn(hObject, eventdata, handles)
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
