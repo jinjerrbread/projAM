@@ -2,6 +2,7 @@ function varargout = mrrobot(varargin)
 % MRROBOT MATLAB code for mrrobot.fig
 %      MRROBOT, by itself, creates a new MRROBOT or raises the existing
 %      singleton*.
+%comentariu nou
 %
 %      H = MRROBOT returns the handle to a new MRROBOT or the handle to
 %      the existing singleton*.
@@ -19,11 +20,6 @@ function varargout = mrrobot(varargin)
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
-<<<<<<< HEAD
-%linie intre comenentarii
-=======
-%am comentat aici
->>>>>>> bd39190c9b3cd111bb1eb9ad1de305c1c41f1f1b
 % Edit the above text to modify the response to help mrrobot
 
 % Last Modified by GUIDE v2.5 16-Apr-2020 21:26:46
