@@ -19,13 +19,8 @@ function varargout = mrrobot(varargin)
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
-<<<<<<< HEAD
-%linie intre comenentarii
-=======
-%am comentat aici
->>>>>>> bd39190c9b3cd111bb1eb9ad1de305c1c41f1f1b
 % Edit the above text to modify the response to help mrrobot
-
+%commmmmm
 % Last Modified by GUIDE v2.5 16-Apr-2020 21:26:46
 
 % Begin initialization code - DO NOT EDIT
