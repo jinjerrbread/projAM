@@ -6,7 +6,7 @@ clc;
 
 % Read the input image 
 %input = imread('/Users/irinafranciscaion/Desktop/swag.png'); 
- input = imread('soc.jpg'); 
+input = imread('color.png'); 
 
 % Convert image to greyscale 
 input=rgb2gray(input); 
@@ -15,7 +15,7 @@ input=rgb2gray(input);
 input=imresize(input, [512 512]); 
 
 % Message to be embedded 
-message='Gur bqq bar bhg orgjrra gjragl naq guvegl'; 
+message='The odd one out between twenty and thirty'; 
 
 % Length of the message where each character is 8 bits 
 len = length(message) * 8; 
@@ -74,10 +74,8 @@ end
 % imwrite(output, '/Users/irinafranciscaion/Desktop/stegoImage.jpg'); 
 % filename = '/Users/irinafranciscaion/Desktop/output_img.csv'; 
 
-imwrite(input, 'soc1.jpg'); 
+imwrite(input, 'color.jpg'); 
 imwrite(output, 'stegoImage.jpg'); 
 filename = 'output_img.csv'; 
 
 csvwrite(filename, output); 
-
-

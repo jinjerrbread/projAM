@@ -119,6 +119,8 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+%% gender voice recognition
 fs=8000;
 nbits=16;
 nchannels=1;
@@ -154,12 +156,21 @@ Fth= 160; %% threshold frequency is 160 Hz, you can change this frequency too
 
 if Fx> Fth
 
-    set(handles.edit1,'String','Hello,I see you are a Miss. I will call you Darlene.Rememeber the last letter of your name, you will need it later');
+    set(handles.edit1,'String','Hello,I see you are a Miss. I will call you Darlene.');
     set(handles.edit16,'String','DARLENE');
+    myicon = imread('FSOCIETY.png');
+    h2=msgbox('We will jump directly to Level 2, we don?t obey the rules','CLUE 1','custom',myicon);
+    %myicon = imread('fsociety.jpg');
+    h1=msgbox('Operation Completed, Darlene. You will be given an image, I want you to look closely and remember, there is more than meets the eye','Success','custom',myicon);
+    
 else
 
-    set(handles.edit1,'String','Hello, I see I am talking to a Mr. I will call you Elliot.Rememeber the first letter of your name, you will need it later!');
+    set(handles.edit1,'String','Hello, I see I am talking to a Mr. I will call you Elliot.');
     set(handles.edit16,'string','ELLIOT');
+    myicon = imread('FSOCIETY.png');
+    %myicon = imread('fsociety.jpg');
+    h4=msgbox('We will jump directly to Level 2, we dont obey the rules','CLUE 1','custom',myicon);
+    h3=msgbox('Operation Completed, Elliot. You will be given an image, I want you to look closely and remember, there is more than meets the eye','Success','custom',myicon);
 end
 guidata(hObject, handles);
 
@@ -512,6 +523,10 @@ for i=1:length(handles.ciphermessage)
 end
 handles.plainmessage=char(handles.plainmessage)    
 set(handles.edit8,'String',handles.plainmessage);
+
+myicon = imread('FSOCIETY.png');
+ h8=msgbox('Odd things are worth listening to','CLUE3','custom',myicon)
+ h7=msgbox('Congrats, you earned another point','Succes','custom',myicon);
 guidata(hObject, handles);
 
 
@@ -582,7 +597,7 @@ function pushbutton15_Callback(hObject, eventdata, handles)
 %clc; 
 
 % Getting the input image 
-handles.filename = '/Users/irinafranciscaion/Desktop/output_img.csv'; 
+handles.filename = 'output_img.csv'; 
 handles.input_image = csvread(handles.filename); 
 
 % Get height and width for traversing through the image 
@@ -590,7 +605,8 @@ height = size(handles.input_image, 1);
 width = size(handles.input_image, 2); 
 
 % Number of characters of the hidden text 
-chars = 13; 
+chars = 41; 
+%chars= length(get(handles.
 
 % Number of bits in the message 
 message_length = chars * 8; 
@@ -629,6 +645,12 @@ handles.textString = char(binValues*binMatrix);
 % Print the hidden text 
 disp(handles.textString); 
 set(handles.edit11,'String',handles.textString);
+   
+ myicon = imread('FSOCIETY.png');
+ h6=msgbox('Remember, here 13 is a lucky number','CLUE2','custom',myicon);
+ h5=msgbox('Congratulations, you have finished the level and earned a point','Success','custom',myicon);
+ 
+    
 guidata(hObject, handles);
 
 
@@ -661,7 +683,12 @@ function pushbutton18_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 axes(handles.axes1)
-imshow('/Users/irinafranciscaion/Desktop/stegoImage.jpg','parent',handles.axes1);
+imshow('stegoImage.jpg','parent',handles.axes1);
+axes(handles.axes5)
+imshow('soc1.jpg','parent',handles.axes5);
+myicon = imread('FSOCIETY.png');
+h8=msgbox('They look alike right?But one hides a secret','CLUE','custom',myicon);
+
 guidata(hObject,handles)
 
 

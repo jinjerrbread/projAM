@@ -5,7 +5,8 @@ clear all;
 clc; 
 
 % Getting the input image 
-filename = '/Users/irinafranciscaion/Desktop/output_img.csv'; 
+%filename = '/Users/irinafranciscaion/Desktop/output_img.csv'; 
+filename = 'output_img.csv'; 
 input_image = csvread(filename); 
 
 % Get height and width for traversing through the image 
@@ -13,7 +14,7 @@ height = size(input_image, 1);
 width = size(input_image, 2); 
 
 % Number of characters of the hidden text 
-chars = 13; 
+chars = 36; 
 
 % Number of bits in the message 
 message_length = chars * 8; 
